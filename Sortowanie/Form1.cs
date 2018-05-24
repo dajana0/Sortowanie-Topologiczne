@@ -25,6 +25,7 @@ namespace Sortowanie
         private void Form1_Load(object sender, EventArgs e)
         {
             root = new TNode(1);
+
             ArrangeTree();
         }
 

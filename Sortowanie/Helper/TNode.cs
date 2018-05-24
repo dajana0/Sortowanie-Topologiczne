@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Sortowanie.Helper
 {
+   
     public partial class TNode
     {
+        public enum NodeColor { White, Gray, Black };
         public string Label
         {
             get
@@ -18,6 +20,9 @@ namespace Sortowanie.Helper
         public int label { get; set; }
         public List<TNode> Children { get; set; }
         public TNode Parent { get; set; }
+        public NodeColor Color { get; set; }
+        public int start { get; set; }
+        public int finish { get; set; }
         public TNode(int label)
         {
             Children = new List<TNode>();
