@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sortowanie.Helper
 {
-   
+
     public partial class TNode
     {
         public enum NodeColor { White, Gray, Black };
@@ -19,7 +19,8 @@ namespace Sortowanie.Helper
         }
         public int label { get; set; }
         public List<TNode> Children { get; set; }
-        public TNode Parent { get; set; }
+       // public TNode Parent { get; set; }
+
         public NodeColor Color { get; set; }
         public int start { get; set; }
         public int finish { get; set; }
@@ -39,10 +40,10 @@ namespace Sortowanie.Helper
             {
                 return this;
             }
-            if (Parent != null && Parent.label == label)
-            {
-                return Parent;
-            }
+           // if (Parent != null && Parent.label == label)
+            //{
+            //    return Parent;
+            //}
             foreach (TNode child in Children)
             {
                 var res = child.FindChild(label);
@@ -53,18 +54,13 @@ namespace Sortowanie.Helper
         }
         public TNode AddChild(int label)
         {
-            var node = new TNode(label) { Parent = this };
+            var node = new TNode(label);
             Children.Add(node);
             return node;
         }
         public TNode AddChild(TNode child)
         {
-            if (child.Parent != null)
-            {
-                child.Parent.RemoveChild(child);
-                child.AddChild(child.Parent);
-            }
-            child.Parent = this;
+            // child.Parent = this;
             Children.Add(child);
             return this;
 
@@ -125,7 +121,7 @@ namespace Sortowanie.Helper
         {
             if (currentLowest == null || (node.label < currentLowest.label))
             {
-                if (((node.Parent == null && node.Children.Count == 1) || (node.Parent != null && node.Children.Count == 0)))
+                if (( node.Children.Count == 0))
                     return node;
             }
             TNode res = null;

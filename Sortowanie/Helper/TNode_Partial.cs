@@ -111,13 +111,14 @@ namespace Sortowanie.Helper
             {
                 // Draw the link between this node this child.
                 AdjustableArrowCap myArrow = new AdjustableArrowCap(15,15, false);
-                Pen capPen = new Pen(Color.Black);
+                Pen capPen = new Pen(System.Drawing.Color.Black);
                 capPen.CustomEndCap = myArrow;
                 //gr.DrawLine(capPen, Center, child.Center);
                 gr.DrawLine(capPen, Center.X, Center.Y, child.Center.X , child.Center.Y - 15);
                 // Recursively make the child draw its subtree nodes.
                 child.DrawSubtreeLinks(gr);
             }
+
         }
 
         // Draw the nodes for the subtree rooted at this node.

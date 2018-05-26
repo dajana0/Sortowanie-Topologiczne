@@ -33,6 +33,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dodajWęzełToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuńWęzełToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btPlik = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picTree)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +47,6 @@
             this.picTree.TabStop = false;
             this.picTree.Paint += new System.Windows.Forms.PaintEventHandler(this.picTree_Paint);
             this.picTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picTree_MouseDown);
-            this.picTree.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picTree_MouseMove);
             this.picTree.Resize += new System.EventHandler(this.picTree_Resize);
             // 
             // contextMenuStrip1
@@ -71,11 +71,22 @@
             this.usuńWęzełToolStripMenuItem.Text = "Usuń węzeł";
             this.usuńWęzełToolStripMenuItem.Click += new System.EventHandler(this.usuńWęzełToolStripMenuItem_Click);
             // 
+            // btPlik
+            // 
+            this.btPlik.Location = new System.Drawing.Point(486, 32);
+            this.btPlik.Name = "btPlik";
+            this.btPlik.Size = new System.Drawing.Size(75, 23);
+            this.btPlik.TabIndex = 4;
+            this.btPlik.Text = "Plik";
+            this.btPlik.UseVisualStyleBackColor = true;
+            this.btPlik.Click += new System.EventHandler(this.btPlik_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 450);
+            this.Controls.Add(this.btPlik);
             this.Controls.Add(this.picTree);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -92,6 +103,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dodajWęzełToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usuńWęzełToolStripMenuItem;
+        private System.Windows.Forms.Button btPlik;
     }
 }
 

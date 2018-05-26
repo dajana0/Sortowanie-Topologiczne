@@ -16,16 +16,17 @@ namespace Sortowanie
 
         private void recursiveDfs(TNode node)
         {
+            if (node.Color == NodeColor.Gray)
+            {
+                throw new Exception("Graf posiada cykl");
+            }
             node.start = time++;
             node.Color = NodeColor.Gray;
             foreach (var item in graf[node])
             {
-                if(item.Color == NodeColor.White)
-                {
-                    item.Parent = node;
-                    item.Parent.AddChild(node);
-                    recursiveDfs(item);
-                }
+                //item.Parent = node;
+                node.AddChild(item);
+                recursiveDfs(item);
             }
             node.Color = NodeColor.Black;
             node.finish = time++;
@@ -34,10 +35,9 @@ namespace Sortowanie
 
         public void dfs()
         {
-             
             foreach (var element in graf)
             {
-                if(element.Key.Color == NodeColor.White)
+                if (element.Key.Color == NodeColor.White)
                 {
                     recursiveDfs(element.Key);
                 }
@@ -45,23 +45,11 @@ namespace Sortowanie
         }
 
 
-        public void init (TNode node)
-        {
-            node.Parent = null;
-            node.Color = NodeColor.White;
-            node.start = 0;
-            node.finish = 0;
-
-            foreach (TNode child in node.Children)
-            {
-                init(child);
-            }
-        }
-
-        public void start(int n, int e, Dictionary<TNode, List<TNode>> graf)
+        public Stack<TNode> start(int n, int e, Dictionary<TNode, List<TNode>> graf)
         {
             this.graf = graf;
             dfs();
+            return stack;
 
         }
     }
