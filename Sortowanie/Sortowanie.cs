@@ -11,16 +11,37 @@ namespace Sortowanie
     public class Sortowanie
     {
         private Stack<TNode> stack = new Stack<TNode>();
-        List<List<TNode>> list = new List<List<TNode>>();
-        public void dfs(TNode root)
-        {
-            int time = 0;
-            init(root);
-        }
+        private Dictionary<TNode, List<TNode>> graf;
+        private int time = 0;
 
         private void recursiveDfs(TNode node)
         {
+            node.start = time++;
+            node.Color = NodeColor.Gray;
+            foreach (var item in graf[node])
+            {
+                if(item.Color == NodeColor.White)
+                {
+                    item.Parent = node;
+                    item.Parent.AddChild(node);
+                    recursiveDfs(item);
+                }
+            }
+            node.Color = NodeColor.Black;
+            node.finish = time++;
+            stack.Push(node);
+        }
 
+        public void dfs()
+        {
+             
+            foreach (var element in graf)
+            {
+                if(element.Key.Color == NodeColor.White)
+                {
+                    recursiveDfs(element.Key);
+                }
+            }
         }
 
 
@@ -30,18 +51,18 @@ namespace Sortowanie
             node.Color = NodeColor.White;
             node.start = 0;
             node.finish = 0;
+
             foreach (TNode child in node.Children)
             {
                 init(child);
             }
         }
 
-        public void start(int n, int e, List<int[]> l)
+        public void start(int n, int e, Dictionary<TNode, List<TNode>> graf)
         {
-            for(int x = 1; x <= n; x++)
-            {
-              //  list.Add(new TNode(x));
-            }
+            this.graf = graf;
+            dfs();
+
         }
     }
 }
