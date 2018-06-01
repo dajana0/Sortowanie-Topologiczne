@@ -26,16 +26,6 @@ namespace Sortowanie
         private void Form1_Load(object sender, EventArgs e)
         {
             root = new TNode(1);
-            TNode c1 = new TNode(2);
-            TNode c2 = new TNode(3);
-            TNode c3 = new TNode(4);
-            TNode c4 = new TNode(5);
-            TNode c5 = new TNode(6);
-            ArrangeTree();
-            root.AddChild(c1);
-            c1.AddChild(root);
-           // c1.AddChild(c2);
-           // root.AddChild(c2);
         }
 
         private void start(string fileText)
@@ -54,16 +44,38 @@ namespace Sortowanie
                 TNode value  = dict.Keys.Where(x => x.Label == nextLine[1]).FirstOrDefault();
                 dict[key].Add(value);
             }
+            lbSort.Text = "";
             Sortowanie sortowanie = new Sortowanie();
-            Stack<TNode>  result = sortowanie.start(n, e, dict);
-            var s = "";
-            while(result.Count != 0)
+            Stack<TNode> result = null;
+            try
             {
-                TNode node = result.Pop();
-                s += "node: " + node.Label + " czas zakończenia: " + node.finish + Environment.NewLine;
+                result = sortowanie.start(n, e, dict);
+            } catch(Exception ex)
+            {
+                if (ex.Message == "NIE")
+                    result = null;
             }
+            if(result == null)
+            {
+                lbTakNie.Text = "NIE";
+            }
+            else
+            {
+                lbTakNie.Text = "TAK";
+                var orderedResult = result.OrderBy(t => t.finish).Distinct().ToArray();
+                var s = "";
+                int counter = 1;
+                for(var x = orderedResult.Length - 1; x>= 0; x--)
+                {
+                    s += counter.ToString()+". " + orderedResult[x].Label + " (czas zakończenia: " + orderedResult[x].finish+")" + Environment.NewLine;
+                    counter++;
+                }
+                lbSort.Text = s;
+            }
+           
+            
 
-        }
+         }
 
         private Dictionary<TNode, List<TNode>> initDictionary(int n)
         {
@@ -85,7 +97,7 @@ namespace Sortowanie
 
                 // Arrange the tree again to center it horizontally.
                 xmin = (this.ClientSize.Width - xmin) / 2;
-                ymin = 10;
+                ymin = (this.ClientSize.Height - ymin) / 2;
                 root.Arrange(gr, ref xmin, ref ymin);
             }
 

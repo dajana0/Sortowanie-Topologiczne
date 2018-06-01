@@ -18,7 +18,7 @@ namespace Sortowanie
         {
             if (node.Color == NodeColor.Gray)
             {
-                throw new Exception("Graf posiada cykl");
+                throw new Exception("NIE");
             }
             node.start = time++;
             node.Color = NodeColor.Gray;
@@ -50,6 +50,7 @@ namespace Sortowanie
             this.graf = graf;
             dfs();
             return stack;
+
 
         }
     }

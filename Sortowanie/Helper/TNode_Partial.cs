@@ -150,28 +150,6 @@ namespace Sortowanie.Helper
             return null;
         }
 
-        // Delete a target node from this node's subtree.
-        // Return true if we delete the node.
-        //public bool DeleteNode(TNode target)
-        //{
-        //    // See if the target is in our subtree.
-        //    foreach (TNode child in Children)
-        //    {
-        //        // See if it's the child.
-        //        if (child == target)
-        //        {
-        //            // Delete this child.
-        //            Children.Remove(child);
-        //            return true;
-        //        }
-
-        //        // See if it's in the child's subtree.
-        //        if (child.DeleteNode(target)) return true;
-        //    }
-
-        //    // It's not in our subtree.
-        //    return false;
-        //}
 
         // Return the size of the string plus a 10 pixel margin.
         public SizeF GetSize(Graphics gr, Font font)
